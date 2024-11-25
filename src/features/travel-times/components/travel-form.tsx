@@ -5,16 +5,19 @@ import { tripByCoordinates } from "../actions";
 type Props = {
   from: string;
   to: string;
+  setFrom: React.Dispatch<React.SetStateAction<string>>;
+  setTo: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function TravelForm({ from, to }: Props) {
-  const handleFocus = (inputType: "from" | "to") => {
-    console.log(inputType);
-  };
-
-  // const handleBlur = () => {
-  //   setFocusedInput(null);
-  // };
+export default function TravelForm({ from, to, setFrom, setTo }: Props) {
+  function handleInputChange(
+    e: React.ChangeEvent<HTMLInputElement>,
+    setValue: React.Dispatch<React.SetStateAction<string>>
+  ) {
+    const fromInput = e.target.value;
+    console.log("from", fromInput);
+    setValue(fromInput);
+  }
 
   return (
     <form
@@ -40,7 +43,7 @@ export default function TravelForm({ from, to }: Props) {
               id="from"
               name="from"
               placeholder="From"
-              onFocus={() => handleFocus("from")}
+              onChange={(e) => handleInputChange(e, setFrom)}
               value={from}
               required
             />
@@ -62,7 +65,7 @@ export default function TravelForm({ from, to }: Props) {
               id="to"
               name="to"
               placeholder="To"
-              onFocus={() => handleFocus("to")}
+              onChange={(e) => handleInputChange(e, setTo)}
               value={to}
               required
             />

@@ -5,12 +5,12 @@ import TravelLayout from "@/features/travel-times/components/travel-layout";
 import { useState } from "react";
 
 export default function Page() {
-  const [from, setForm] = useState("");
+  const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   return (
     <div>
-      <TravelMap setForm={setForm} setTo={setTo} from={from} />
-      <TravelForm from={from} to={to} />
+      <TravelMap setForm={setFrom} setTo={setTo} from={from} />
+      <TravelForm from={from} to={to} setFrom={setFrom} setTo={setTo} />
       <TravelLayout />
     </div>
   );

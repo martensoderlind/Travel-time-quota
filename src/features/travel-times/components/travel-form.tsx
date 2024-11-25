@@ -9,15 +9,6 @@ export default function TravelForm() {
       <h1 className=" text-3xl text-center text-gray-900">Sök din resa</h1>
       <section className="flex flex-row">
         <div className="flex flex-col p-2">
-          {/* <label htmlFor="" className="text-gray-700">
-            Från:
-          </label>
-          <input
-            type="text"
-            name="from"
-            id="from"
-            className="input input-bordered w-full max-w-xs bg-gray-300 text-black"
-          /> */}
           <label className="input input-bordered flex items-center gap-2 m-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"

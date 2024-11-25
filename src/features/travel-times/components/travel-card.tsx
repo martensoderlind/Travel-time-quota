@@ -9,6 +9,13 @@ export default function TravelCard({ trip }: Props) {
   function calculateTimeRatio(transit: number, car: number) {
     return Number((transit / car).toFixed(2));
   }
+
+  function publicTransportMarketShare(transit: number, car: number) {
+    const travelTimeQuota = calculateTimeRatio(transit, car);
+    const marketShare = 0.9116 * Math.pow(travelTimeQuota, -1.264) * 100;
+    return marketShare.toFixed(0);
+  }
+
   return (
     <div key={trip.id} className="p-4">
       <div className="flex items-center space-x-2 mb-2">
@@ -32,7 +39,7 @@ export default function TravelCard({ trip }: Props) {
 
       <div className="mt-2 pt-2 border-t">
         <div className="flex justify-between items-center">
-          <span className="font-medium">Restidskvot:</span>
+          <span className="font-medium">Travel Time Quota:</span>
           <span
             className={`text-lg ${
               calculateTimeRatio(trip.publicTransitTime, trip.carTime) > 1.5
@@ -41,6 +48,12 @@ export default function TravelCard({ trip }: Props) {
             }`}
           >
             {calculateTimeRatio(trip.publicTransitTime, trip.carTime)}
+          </span>
+          <span className="font-medium">
+            Public transpport Estimated market share:
+          </span>
+          <span>
+            {publicTransportMarketShare(trip.publicTransitTime, trip.carTime)}%
           </span>
         </div>
       </div>

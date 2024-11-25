@@ -1,6 +1,20 @@
 import { MapPin, MapPinCheckInside } from "lucide-react";
+import { tripByCoordinates } from "../actions";
 
-export default function TravelForm() {
+export default async function TravelForm() {
+  async function onClick() {
+    "use server";
+    const origin = {
+      lat: "59.3293",
+      lng: "18.0686",
+    };
+    const destination = {
+      lat: "59.3378",
+      lng: "18.0125",
+    };
+    const data = await tripByCoordinates(origin, destination);
+    console.log("data:", data);
+  }
   return (
     <form
       autoComplete="off"
@@ -50,7 +64,7 @@ export default function TravelForm() {
         </div>
       </section>
 
-      <button className="btn my-2" type="submit">
+      <button className="btn my-2" type="submit" onClick={onClick}>
         Search
       </button>
     </form>

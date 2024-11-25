@@ -1,4 +1,6 @@
+"use server";
 import { createFeature } from "./instance";
+import { Coordinates } from "./types";
 
 export async function trip(origin: string, destination: string) {
   const fromStation = await getStations(origin);
@@ -6,6 +8,13 @@ export async function trip(origin: string, destination: string) {
   const originIdId = fromStation.Departure[0].stopExtId;
   const destId = destinationStation.Departure[0].stopExtId;
   const trip = await createFeature.getTrip(originIdId, destId);
+  return trip;
+}
+export async function tripByCoordinates(
+  origin: Coordinates,
+  destination: Coordinates
+) {
+  const trip = await createFeature.getTripByCoordinates(origin, destination);
   return trip;
 }
 

@@ -8,14 +8,12 @@ export function LocationMarker() {
     click() {
       map.locate();
     },
-
     locationfound(e) {
       setLati(e.latlng.lat);
       setLong(e.latlng.lng);
       map.flyTo(e.latlng, map.getZoom());
     },
   });
-
   return (
     <Marker position={{ lat: lati, lng: long }}>
       <Popup>You are here</Popup>

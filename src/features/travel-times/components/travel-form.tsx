@@ -1,3 +1,5 @@
+import { MapPin, MapPinCheckInside } from "lucide-react";
+
 export default function TravelForm() {
   return (
     <form
@@ -7,7 +9,7 @@ export default function TravelForm() {
       <h1 className=" text-3xl text-center text-gray-900">Sök din resa</h1>
       <section className="flex flex-row">
         <div className="flex flex-col p-2">
-          <label htmlFor="" className="text-gray-700">
+          {/* <label htmlFor="" className="text-gray-700">
             Från:
           </label>
           <input
@@ -15,23 +17,50 @@ export default function TravelForm() {
             name="from"
             id="from"
             className="input input-bordered w-full max-w-xs bg-gray-300 text-black"
-          />
+          /> */}
+          <label className="input input-bordered flex items-center gap-2 m-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <MapPin className="text-blue-500" size={16} />
+            </svg>
+            <input
+              type="text"
+              className="grow"
+              id="name"
+              name="name"
+              placeholder="From"
+              required
+            />
+          </label>
         </div>
         <div className="flex flex-col p-2">
-          <label htmlFor="to" className="text-gray-700">
-            Till:
+          <label className="input input-bordered flex items-center gap-2 m-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <MapPinCheckInside className="text-blue-500" size={16} />
+            </svg>
+            <input
+              type="text"
+              className="grow"
+              id="name"
+              name="name"
+              placeholder="To"
+              required
+            />
           </label>
-          <input
-            type="text"
-            name="to"
-            id="to"
-            className="input input-bordered w-full max-w-xs bg-gray-300 text-black"
-          />
         </div>
       </section>
 
       <button className="btn my-2" type="submit">
-        Sök
+        Search
       </button>
     </form>
   );

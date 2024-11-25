@@ -1,8 +1,14 @@
 "use client";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useEffect } from "react";
+import { useState } from "react";
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -11,24 +17,41 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-export default function TravelMap() {
-  useEffect(() => {
-    // Lägg till logik för att undvika SSR-relaterade buggar (om nödvändigt)
-  }, []);
+export function LocationMarker() {
+  const [lati, setLati] = useState(59.3293);
+  const [long, setLong] = useState(18.0686);
+  const map = useMapEvents({
+    click() {
+      map.locate();
+    },
+
+    locationfound(e) {
+      setLati(e.latlng.lat);
+      setLong(e.latlng.lng);
+      map.flyTo(e.latlng, map.getZoom());
+    },
+  });
 
   return (
+    <Marker position={{ lat: lati, lng: long }}>
+      <Popup>You are here</Popup>
+    </Marker>
+  );
+}
+
+export default function TravelMap() {
+  return (
     <MapContainer
-      center={[59.3293, 18.0686]} // Stockholm
+      center={{ lat: 59.3293, lng: 18.0686 }}
       zoom={13}
-      style={{ height: "400px", width: "100%" }}
+      style={{ height: "500px", width: "100%" }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
       />
-      <Marker position={[59.3293, 18.0686]}>
-        <Popup>Hej från Stockholm!</Popup>
-      </Marker>
+      {/* <Marker position={position}></Marker> */}
+      <LocationMarker />
     </MapContainer>
   );
 }

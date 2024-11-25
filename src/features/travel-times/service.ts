@@ -56,7 +56,11 @@ export function createTripService(db: Trip[]) {
         const data = await response.json();
         return data.Trip[0].LegList.Leg[0];
       } catch (error: unknown) {
-        return Response.json({ error: error.message }, { status: 500 });
+        if (error instanceof Error) {
+          console.error(error.message);
+          throw new Error(`Trip fetch failed: ${error.message}`);
+        }
+        throw new Error("An unknown error occurred");
       }
     },
   };

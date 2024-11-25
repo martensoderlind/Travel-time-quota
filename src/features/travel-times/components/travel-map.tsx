@@ -1,8 +1,7 @@
 "use client";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { LocationMarker } from "./location-marker";
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -11,7 +10,27 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-export default function TravelMap() {
+type Props = {
+  setForm: React.Dispatch<React.SetStateAction<string>>;
+  setTo: React.Dispatch<React.SetStateAction<string>>;
+  from: string;
+};
+
+export default function TravelMap({ setForm, setTo, from }: Props) {
+  function MapClickHandler() {
+    useMapEvents({
+      click: (e) => {
+        const { lat, lng } = e.latlng;
+        if (from === "") {
+          setForm(`${lat.toFixed(4).toString()} ${lng.toFixed(4).toString()}`);
+        } else {
+          setTo(`${lat.toFixed(4).toString()} ${lng.toFixed(4).toString()}`);
+        }
+        console.log(`Latitud: ${lat}, Longitud: ${lng}`);
+      },
+    });
+    return null;
+  }
   return (
     <MapContainer
       center={{ lat: 59.3293, lng: 18.0686 }}
@@ -22,7 +41,7 @@ export default function TravelMap() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
       />
-      <LocationMarker />
+      <MapClickHandler />
     </MapContainer>
   );
 }

@@ -14,6 +14,15 @@ export const db = [
     carTime: 10,
   },
 ];
+
+export const origin = {
+  lat: "59.3293",
+  lng: "18.0686",
+};
+export const destination = {
+  lat: "59.3378",
+  lng: "18.0125",
+};
 //example trip
 export const tripdb = [
   {

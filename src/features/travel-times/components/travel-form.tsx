@@ -1,22 +1,24 @@
+"use client";
 import { MapPin, MapPinCheckInside } from "lucide-react";
 import { tripByCoordinates } from "../actions";
 
-export default async function TravelForm() {
-  async function onClick() {
-    "use server";
-    const origin = {
-      lat: "59.3293",
-      lng: "18.0686",
-    };
-    const destination = {
-      lat: "59.3378",
-      lng: "18.0125",
-    };
-    const data = await tripByCoordinates(origin, destination);
-    console.log("data:", data);
-  }
+type Props = {
+  from: string;
+  to: string;
+};
+
+export default function TravelForm({ from, to }: Props) {
+  const handleFocus = (inputType: "from" | "to") => {
+    console.log(inputType);
+  };
+
+  // const handleBlur = () => {
+  //   setFocusedInput(null);
+  // };
+
   return (
     <form
+      action={tripByCoordinates}
       autoComplete="off"
       className=" container mx-auto flex flex-col items-center m-4 p-4 bg-slate-100 rounded-md w-full md:w-8/12 shadow-lg"
     >
@@ -35,9 +37,11 @@ export default async function TravelForm() {
             <input
               type="text"
               className="grow"
-              id="name"
-              name="name"
+              id="from"
+              name="from"
               placeholder="From"
+              onFocus={() => handleFocus("from")}
+              value={from}
               required
             />
           </label>
@@ -55,16 +59,18 @@ export default async function TravelForm() {
             <input
               type="text"
               className="grow"
-              id="name"
-              name="name"
+              id="to"
+              name="to"
               placeholder="To"
+              onFocus={() => handleFocus("to")}
+              value={to}
               required
             />
           </label>
         </div>
       </section>
 
-      <button className="btn my-2" type="submit" onClick={onClick}>
+      <button className="btn my-2" type="submit">
         Search
       </button>
     </form>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 export default function Navbar() {
   return (
@@ -10,10 +9,10 @@ export default function Navbar() {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-2 ">
           <li>
-            <Link href="\elections\">Search</Link>
+            <Link href="">Search</Link>
           </li>
           <li>
-            <Link href="\concluded-elections\">Old searches</Link>
+            <Link href="">Old searches</Link>
           </li>
         </ul>
       </div>

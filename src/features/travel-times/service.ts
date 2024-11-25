@@ -1,3 +1,4 @@
+import { createFeature } from "./instance";
 import { CapitalFirstLetter } from "./logic";
 import { createRepository } from "./repository";
 import { Coordinates, Trip } from "./types";
@@ -40,6 +41,16 @@ export function createTripService(db: Trip[]) {
         console.log("Error: ", error);
       }
     },
+    async getCoordinates(origin: string, destination: string) {
+      const [originLat, originLng] = origin.split(" ");
+      const [destinationLat, destinationLng] = destination.split(" ");
+
+      return await createFeature.getTripByCoordinates(
+        { lat: originLat, lng: originLng },
+        { lat: destinationLat, lng: destinationLng }
+      );
+    },
+
     async getTripByCoordinates(
       fromStation: Coordinates,
       toStation: Coordinates
@@ -48,13 +59,13 @@ export function createTripService(db: Trip[]) {
       const originLng = fromStation.lng;
       const destLat = toStation.lat;
       const destLng = toStation.lng;
-
+      console.log("coordinates", originLat, originLng, destLat, destLng);
       const url = `https://api.resrobot.se/v2.1/trip?originCoordLat=${originLat}&originCoordLong=${originLng}&destCoordLat=${destLat}&destCoordLong=${destLng}&format=json&accessId=${api_key}`;
 
       try {
         const response = await fetch(url);
         const data = await response.json();
-        return data.Trip[0].LegList.Leg[0];
+        return data.Trip[0].LegList.Leg;
       } catch (error: unknown) {
         if (error instanceof Error) {
           console.error(error.message);

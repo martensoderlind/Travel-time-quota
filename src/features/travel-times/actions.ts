@@ -12,9 +12,9 @@ export async function trip(origin: string, destination: string) {
 export async function tripByCoordinates(formData: FormData) {
   const origin = formData.get("from") as string;
   const destination = formData.get("to") as string;
-  console.log("origin", origin, "destination", destination);
-  // const trip = await createFeature.getTripByCoordinates(origin, destination);
-  // return trip;
+  // console.log("origin", origin, "destination", destination);
+  const trip = await createFeature.getCoordinates(origin, destination);
+  console.log(trip);
 }
 
 export async function getStations(station: string) {

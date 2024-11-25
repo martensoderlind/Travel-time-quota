@@ -1,5 +1,5 @@
 "use client";
-import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -18,19 +18,25 @@ type Props = {
 
 export default function TravelMap({ setForm, setTo, from }: Props) {
   function MapClickHandler() {
+    let lati = 0;
+    let long = 0;
     useMapEvents({
       click: (e) => {
         const { lat, lng } = e.latlng;
+        lati = lat;
+        long = lng;
         if (from === "") {
           setForm(`${lat.toFixed(4).toString()} ${lng.toFixed(4).toString()}`);
         } else {
           setTo(`${lat.toFixed(4).toString()} ${lng.toFixed(4).toString()}`);
         }
-        console.log(`Latitud: ${lat}, Longitud: ${lng}`);
+        console.log(`Latitud: ${lati}, Longitud: ${long}`);
       },
     });
-    return null;
+    //fungerar inte??
+    return <Marker position={{ lat: lati, lng: long }} />;
   }
+
   return (
     <MapContainer
       center={{ lat: 59.3293, lng: 18.0686 }}

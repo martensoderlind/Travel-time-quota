@@ -15,7 +15,6 @@ export default function TravelForm({ from, to, setFrom, setTo }: Props) {
     setValue: React.Dispatch<React.SetStateAction<string>>
   ) {
     const fromInput = e.target.value;
-    console.log("from", fromInput);
     setValue(fromInput);
   }
 

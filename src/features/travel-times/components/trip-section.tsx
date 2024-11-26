@@ -4,9 +4,17 @@ import { Footprints, BusFront } from "lucide-react";
 
 type Props = {
   sectionData: PublicTransport | Walk;
+  originStreet: string;
+  destinationStreet: string;
 };
 
-export default function TripSection({ sectionData }: Props) {
+export default function TripSection({
+  sectionData,
+  originStreet,
+  destinationStreet,
+}: Props) {
+  const latLngRegex =
+    /^-?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*-?(1[0-7]\d(\.\d+)?|180(\.0+)?|([1-9]?\d(\.\d+)?))$/;
   return (
     <>
       {sectionData.type === "WALK" ? (
@@ -38,9 +46,11 @@ export default function TripSection({ sectionData }: Props) {
           >
             <div className="pt-2">
               <span className="text-sm text-start">
-                {sectionData.Origin.name
-                  .replace(/\s*\(Stockholm kn\)/g, "")
-                  .trim()}
+                {latLngRegex.test(sectionData.Origin.name)
+                  ? originStreet
+                  : sectionData.Origin.name
+                      .replace(/\s*\(Stockholm kn\)/g, "")
+                      .trim()}
               </span>
               <p className="text-xs text-start">{sectionData.Origin.time}</p>
             </div>
@@ -53,9 +63,11 @@ export default function TripSection({ sectionData }: Props) {
           >
             <div>
               <span className="text-sm text-start">
-                {sectionData.Destination.name
-                  .replace(/\s*\(Stockholm kn\)/g, "")
-                  .trim()}
+                {latLngRegex.test(sectionData.Origin.name)
+                  ? destinationStreet
+                  : sectionData.Origin.name
+                      .replace(/\s*\(Stockholm kn\)/g, "")
+                      .trim()}
               </span>
               <p className="text-xs text-start">
                 {sectionData.Destination.time}

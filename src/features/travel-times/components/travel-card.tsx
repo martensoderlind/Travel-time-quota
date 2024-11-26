@@ -1,5 +1,5 @@
 import { MapPin, Car, Bus, ChevronDown, ChevronUp } from "lucide-react";
-import { PublicTransport, Walk } from "../types";
+import { CarData, PublicTransport, Walk } from "../types";
 import { useEffect, useState } from "react";
 import { adjustedTravelTime } from "../actions";
 import TripDetails from "./trip-details";
@@ -14,7 +14,7 @@ type Trip = {
   from: string;
   to: string;
   publicTransitTime: number;
-  carTime: number;
+  carData: CarData;
 };
 
 export default function TravelCard({ tripData }: Props) {
@@ -69,7 +69,12 @@ export default function TravelCard({ tripData }: Props) {
 
             <div className="flex items-center space-x-2">
               <Car className="text-gray-500" />
-              <span>{tripInformation!.carTime.toFixed(0)} min</span>
+              <span>
+                {(tripInformation.carData.routes[0].duration / 60 + 10).toFixed(
+                  0
+                )}{" "}
+                min
+              </span>
             </div>
           </div>
 
@@ -80,7 +85,7 @@ export default function TravelCard({ tripData }: Props) {
                 className={`text-lg ${
                   calculateTimeRatio(
                     tripInformation!.publicTransitTime,
-                    tripInformation!.carTime
+                    tripInformation.carData.routes[0].duration / 60 + 10
                   ) > 1.5
                     ? "text-red-500"
                     : "text-green-500"
@@ -88,7 +93,7 @@ export default function TravelCard({ tripData }: Props) {
               >
                 {calculateTimeRatio(
                   tripInformation!.publicTransitTime,
-                  tripInformation!.carTime
+                  tripInformation.carData.routes[0].duration / 60 + 10
                 )}
               </span>
               <span className="font-medium">
@@ -97,7 +102,7 @@ export default function TravelCard({ tripData }: Props) {
               <span>
                 {publicTransportMarketShare(
                   tripInformation!.publicTransitTime,
-                  tripInformation!.carTime
+                  tripInformation.carData.routes[0].duration / 60 + 10
                 )}
                 %
               </span>
@@ -122,7 +127,11 @@ export default function TravelCard({ tripData }: Props) {
               )}
             </button>
             {tripDetails ? (
-              <TripDetails tripData={tripData} />
+              <TripDetails
+                tripData={tripData}
+                originStreet={tripInformation.carData.waypoints[0].name}
+                destinationStreet={tripInformation.carData.waypoints[1].name}
+              />
             ) : (
               <>
                 <div></div>

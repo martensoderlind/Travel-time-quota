@@ -23,7 +23,7 @@ export type Trip = {
   carTime: number;
 };
 
-export type Leg = {
+export type PublicLeg = {
   Origin: Origin;
   Destination: Origin;
   Notes: {
@@ -177,4 +177,33 @@ type Product = {
   icon: string[];
   name: string;
   internalName: string;
+};
+
+export type CarData = {
+  code: string;
+  routes: Routes[];
+  waypoints: Waypoints[];
+};
+type Waypoints = {
+  hint: string;
+  distance: number;
+  name: string;
+  location: number[];
+};
+
+type Routes = {
+  geometry: string;
+  legs: Leg;
+  weight_name: string;
+  weight: number;
+  duration: number;
+  distance: number;
+};
+
+type Leg = {
+  steps: string[];
+  summary: string;
+  weight: number;
+  duration: number;
+  distance: number;
 };

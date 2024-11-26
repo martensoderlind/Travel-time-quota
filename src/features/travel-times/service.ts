@@ -83,7 +83,8 @@ export function createTripService(db: Trip[]) {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        return data.routes[0].duration / 60;
+        console.log("car data: ", data);
+        return data;
       } catch (error: unknown) {
         if (error instanceof Error) {
           console.error(error.message);
@@ -121,11 +122,7 @@ export function createTripService(db: Trip[]) {
         lng: tripData![tripData!.length - 1].Destination.lon.toString(),
       };
 
-      const carTravelTime = await createFeature.traveltimeCar(
-        origincoord,
-        destcoord
-      );
-      console.log("car travel time:", carTravelTime);
+      const carData = await createFeature.traveltimeCar(origincoord, destcoord);
       const travelData = {
         originTime: tripData![0].Origin.time,
         destTime: tripData![tripData!.length - 1].Destination.time,
@@ -136,7 +133,7 @@ export function createTripService(db: Trip[]) {
           .replace(/\s*\(Stockholm kn\)/g, "")
           .trim(),
         publicTransitTime: travelTime,
-        carTime: carTravelTime + 10,
+        carData: carData,
       };
       return travelData;
     },

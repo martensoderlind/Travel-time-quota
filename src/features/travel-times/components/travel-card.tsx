@@ -1,4 +1,4 @@
-import { MapPin, Car, Bus } from "lucide-react";
+import { MapPin, Car, Bus, ChevronDown, ChevronUp } from "lucide-react";
 import { PublicTransport, Walk } from "../types";
 import { useEffect, useState } from "react";
 import { adjustedTravelTime } from "../actions";
@@ -19,6 +19,11 @@ type Trip = {
 
 export default function TravelCard({ tripData }: Props) {
   const [tripInformation, setProcessedTrip] = useState<Trip | null>(null);
+  const [tripDetails, setTripDetails] = useState<boolean>(false);
+
+  const handleChange = () => {
+    setTripDetails((tripDetails) => !tripDetails);
+  };
 
   useEffect(() => {
     const processTrip = async () => {
@@ -98,7 +103,32 @@ export default function TravelCard({ tripData }: Props) {
               </span>
             </div>
           </div>
-          <TripDetails tripData={tripData} />
+          <div>
+            <button onClick={handleChange}>
+              {tripDetails ? (
+                <>
+                  <div className="flex flex-row ml-1 mt-4">
+                    <p className="text-xs pr-4">Hide details</p>
+                    <ChevronDown size={16} />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-row ml-1 mt-4">
+                    <p className="text-xs pr-2">Show details</p>
+                    <ChevronUp size={16} />
+                  </div>
+                </>
+              )}
+            </button>
+            {tripDetails ? (
+              <TripDetails tripData={tripData} />
+            ) : (
+              <>
+                <div></div>
+              </>
+            )}
+          </div>
         </>
       ) : (
         <>

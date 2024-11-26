@@ -106,6 +106,7 @@ export function createTripService(db: Trip[]) {
             parseInt(
               tripData![i].minimumChangeDuration!.replaceAll(/[PTM]/g, "")
             ) / 2;
+          console.log("waitingtime", adjustedWaitTime);
           travelTime = travelTime + adjustedWaitTime * 2.5;
         }
         const adjustedTime = weightedTime(tripTime, tripData![i].type);

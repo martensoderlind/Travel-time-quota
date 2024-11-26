@@ -2,6 +2,7 @@ import { MapPin, Car, Bus } from "lucide-react";
 import { PublicTransport, Walk } from "../types";
 import { useEffect, useState } from "react";
 import { adjustedTravelTime } from "../actions";
+import TripDetails from "./trip-details";
 
 type Props = {
   tripData: PublicTransport[] | Walk[] | null;
@@ -97,6 +98,7 @@ export default function TravelCard({ tripData }: Props) {
               </span>
             </div>
           </div>
+          <TripDetails tripData={tripData} />
         </>
       ) : (
         <>

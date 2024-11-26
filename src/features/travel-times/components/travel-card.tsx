@@ -63,7 +63,7 @@ export default function TravelCard({ tripData }: Props) {
 
             <div className="flex items-center space-x-2">
               <Car className="text-gray-500" />
-              <span>{tripInformation!.carTime} min</span>
+              <span>{tripInformation!.carTime.toFixed(0)} min</span>
             </div>
           </div>
 

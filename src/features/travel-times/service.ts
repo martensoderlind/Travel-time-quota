@@ -73,6 +73,25 @@ export function createTripService(db: Trip[]) {
         throw new Error("An unknown error occurred");
       }
     },
+    async traveltimeCar(fromStation: Coordinates, toStation: Coordinates) {
+      const originLat = fromStation.lat;
+      const originLng = fromStation.lng;
+      const destLat = toStation.lat;
+      const destLng = toStation.lng;
+
+      const url = `https://router.project-osrm.org/route/v1/driving/${originLng},${originLat};${destLng},${destLat}`;
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.routes[0].duration / 60;
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error(error.message);
+          throw new Error(`Trip fetch failed: ${error.message}`);
+        }
+        throw new Error("An unknown error occurred");
+      }
+    },
     async calculateTravelTimeQuote(
       tripData: PublicTransport[] | Walk[] | null
     ) {
@@ -92,6 +111,20 @@ export function createTripService(db: Trip[]) {
         const adjustedTime = weightedTime(tripTime, tripData![i].type);
         travelTime = travelTime + adjustedTime;
       }
+      const origincoord = {
+        lat: tripData![0].Origin.lat.toString(),
+        lng: tripData![0].Origin.lon.toString(),
+      };
+      const destcoord = {
+        lat: tripData![tripData!.length - 1].Destination.lat.toString(),
+        lng: tripData![tripData!.length - 1].Destination.lon.toString(),
+      };
+
+      const carTravelTime = await createFeature.traveltimeCar(
+        origincoord,
+        destcoord
+      );
+      console.log("car travel time:", carTravelTime);
       const travelData = {
         originTime: tripData![0].Origin.time,
         destTime: tripData![tripData!.length - 1].Destination.time,
@@ -102,7 +135,7 @@ export function createTripService(db: Trip[]) {
           .replace(/\s*\(Stockholm kn\)/g, "")
           .trim(),
         publicTransitTime: travelTime,
-        carTime: 10,
+        carTime: carTravelTime + 10,
       };
       return travelData;
     },

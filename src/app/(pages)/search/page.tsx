@@ -11,8 +11,10 @@ export default function Page() {
     null
   );
   return (
-    <div>
-      <TravelMap setForm={setFrom} setTo={setTo} from={from} />
+    <div className="container mx-auto">
+      <div className="mx-auto mt-4 w-8/12 rounded-md">
+        <TravelMap setForm={setFrom} setTo={setTo} from={from} />
+      </div>
       <TravelBoard
         from={from}
         to={to}

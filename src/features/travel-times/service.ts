@@ -82,14 +82,14 @@ export function createTripService(db: Trip[]) {
           tripData![i].Origin.time,
           tripData![i].Destination.time
         );
-        if (tripData![i].Destination.minimumChangeDuration) {
-          const adjustedWaitTime = tripData![
-            i
-          ].Destination.minimumChangeDuration.replaceAll(/[PTM]/g, "");
-          console.log(adjustedWaitTime);
+        if (tripData![i].type !== "WALK") {
+          const adjustedWaitTime =
+            parseInt(
+              tripData![i].minimumChangeDuration!.replaceAll(/[PTM]/g, "")
+            ) / 2;
+          travelTime = travelTime + adjustedWaitTime * 2.5;
         }
         const adjustedTime = weightedTime(tripTime, tripData![i].type);
-        console.log("times:", tripTime, adjustedTime);
         travelTime = travelTime + adjustedTime;
       }
       const travelData = {

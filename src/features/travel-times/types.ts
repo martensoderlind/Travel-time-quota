@@ -117,6 +117,7 @@ export type Walk = {
   type: string;
   duration: string;
   dist: number;
+  minimumChangeDuration?: string;
 };
 export type PublicTransport = {
   Origin: Origin;

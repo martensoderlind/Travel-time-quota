@@ -170,6 +170,7 @@ type Origin = {
   lat: number;
   time: string;
   date: string;
+  minimumChangeDuration: string;
 };
 type Product = {
   icon: string[];

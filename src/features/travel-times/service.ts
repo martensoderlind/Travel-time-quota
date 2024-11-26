@@ -82,6 +82,12 @@ export function createTripService(db: Trip[]) {
           tripData![i].Origin.time,
           tripData![i].Destination.time
         );
+        if (tripData![i].Destination.minimumChangeDuration) {
+          const adjustedWaitTime = tripData![
+            i
+          ].Destination.minimumChangeDuration.replaceAll(/[PTM]/g, "");
+          console.log(adjustedWaitTime);
+        }
         const adjustedTime = weightedTime(tripTime, tripData![i].type);
         console.log("times:", tripTime, adjustedTime);
         travelTime = travelTime + adjustedTime;
@@ -89,8 +95,12 @@ export function createTripService(db: Trip[]) {
       const travelData = {
         originTime: tripData![0].Origin.time,
         destTime: tripData![tripData!.length - 1].Destination.time,
-        from: tripData![0].Destination.name,
-        to: tripData![tripData!.length - 1].Origin.name,
+        from: tripData![0].Destination.name
+          .replace(/\s*\(Stockholm kn\)/g, "")
+          .trim(),
+        to: tripData![tripData!.length - 1].Origin.name
+          .replace(/\s*\(Stockholm kn\)/g, "")
+          .trim(),
         publicTransitTime: travelTime,
         carTime: 10,
       };

@@ -24,8 +24,6 @@ export function calculateDeltaTime(
 export function weightedTime(tripTime: number, type: string) {
   if (type === "WALK") {
     return (tripTime * 2) / 60;
-  } else if (type === "WAIT") {
-    return (tripTime * 2.5) / 60;
   }
   return tripTime / 60;
 }

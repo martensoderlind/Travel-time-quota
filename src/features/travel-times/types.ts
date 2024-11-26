@@ -118,6 +118,30 @@ export type Walk = {
   duration: string;
   dist: number;
 };
+export type PublicTransport = {
+  Origin: Origin;
+  Destination: Destination;
+  Notes: { Note: string[] };
+  JourneyDetailRef: { ref: string };
+  JourneyStatus: string;
+  Product: Product[];
+  JourneyDetail: {
+    ref: string;
+    dayOfOperation: string;
+  };
+  id: string;
+  idx: number;
+  name: string;
+  number: string;
+  category: string;
+  type: string;
+  reachable: boolean;
+  waitingState: string;
+  direction: string;
+  directionFlag: string;
+  duration: string;
+  minimumChangeDuration: string;
+};
 
 type GisRef = {
   ref: string;

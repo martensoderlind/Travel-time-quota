@@ -1,14 +1,14 @@
-"use client";
-import { db as trips } from "@/features/fixtures/mockdb";
 import TravelCard from "./travel-card";
+import { PublicTransport, Walk } from "../types";
 
-export default function TravelLayout() {
-  //import trips
+type Props = {
+  tripData: PublicTransport[] | Walk[] | null;
+};
+
+export default function TravelLayout({ tripData }: Props) {
   return (
     <div className="container mx-auto rounded-md space-y-4 mb-4 shadow-md bg-white w-8/12">
-      {trips.map((trip, index) => (
-        <TravelCard key={index} trip={trip} />
-      ))}
+      {tripData !== null ? <TravelCard tripData={tripData} /> : undefined}
     </div>
   );
 }

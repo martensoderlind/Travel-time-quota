@@ -1,17 +1,26 @@
 "use client";
 import TravelMap from "@/features/travel-times/components/travel-map";
-import TravelForm from "@/features/travel-times/components/travel-form";
-import TravelLayout from "@/features/travel-times/components/travel-layout";
 import { useState } from "react";
+import { PublicTransport, Walk } from "@/features/travel-times/types";
+import TravelBoard from "@/features/travel-times/components/travel-board";
 
 export default function Page() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [tripData, setTripData] = useState<PublicTransport[] | Walk[] | null>(
+    null
+  );
   return (
     <div>
       <TravelMap setForm={setFrom} setTo={setTo} from={from} />
-      <TravelForm from={from} to={to} setFrom={setFrom} setTo={setTo} />
-      <TravelLayout />
+      <TravelBoard
+        from={from}
+        to={to}
+        setFrom={setFrom}
+        setTo={setTo}
+        setTripData={setTripData}
+        tripData={tripData}
+      />
     </div>
   );
 }

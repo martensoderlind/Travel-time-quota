@@ -1,15 +1,24 @@
-"use client";
 import { MapPin, MapPinCheckInside } from "lucide-react";
 import { tripByCoordinates } from "../actions";
+import { PublicTransport, Walk } from "../types";
 
 type Props = {
   from: string;
   to: string;
   setFrom: React.Dispatch<React.SetStateAction<string>>;
   setTo: React.Dispatch<React.SetStateAction<string>>;
+  setTripData: React.Dispatch<
+    React.SetStateAction<PublicTransport[] | Walk[] | null>
+  >;
 };
 
-export default function TravelForm({ from, to, setFrom, setTo }: Props) {
+export default function TravelForm({
+  from,
+  to,
+  setFrom,
+  setTo,
+  setTripData,
+}: Props) {
   function handleInputChange(
     e: React.ChangeEvent<HTMLInputElement>,
     setValue: React.Dispatch<React.SetStateAction<string>>
@@ -18,14 +27,21 @@ export default function TravelForm({ from, to, setFrom, setTo }: Props) {
     setValue(fromInput);
   }
 
+  async function travelData(formData: FormData) {
+    const tripData = await tripByCoordinates(formData);
+    setTripData(tripData);
+  }
+
   return (
     <form
-      action={tripByCoordinates}
+      action={travelData}
       autoComplete="off"
       className=" container mx-auto flex flex-col items-center m-4 p-4 bg-slate-100 rounded-md w-full md:w-8/12 shadow-lg"
     >
-      <h1 className=" text-3xl text-center text-gray-900">Sök din resa</h1>
-      <section className="flex flex-row">
+      <h1 className=" text-3xl text-center text-gray-900">
+        Selects two locations
+      </h1>
+      <section className="flex md:flex-row">
         <div className="flex flex-col p-2">
           <label className="input input-bordered flex items-center gap-2 m-2">
             <svg

@@ -1,7 +1,7 @@
 import { createFeature } from "./instance";
-import { CapitalFirstLetter } from "./logic";
+import { calculateDeltaTime, CapitalFirstLetter, weightedTime } from "./logic";
 import { createRepository } from "./repository";
-import { Coordinates, Trip } from "./types";
+import { Coordinates, PublicTransport, Trip, Walk } from "./types";
 
 export function createTripService(db: Trip[]) {
   const repository = createRepository(db);
@@ -59,7 +59,6 @@ export function createTripService(db: Trip[]) {
       const originLng = fromStation.lng;
       const destLat = toStation.lat;
       const destLng = toStation.lng;
-      console.log("coordinates", originLat, originLng, destLat, destLng);
       const url = `https://api.resrobot.se/v2.1/trip?originCoordLat=${originLat}&originCoordLong=${originLng}&destCoordLat=${destLat}&destCoordLong=${destLng}&format=json&accessId=${api_key}`;
 
       try {
@@ -73,6 +72,27 @@ export function createTripService(db: Trip[]) {
         }
         throw new Error("An unknown error occurred");
       }
+    },
+    async calculateTravelTimeQuote(
+      tripData: PublicTransport[] | Walk[] | null
+    ) {
+      let travelTime = 0;
+      for (let i = 0; i < tripData!.length; i++) {
+        const tripTime = calculateDeltaTime(
+          tripData![i].Origin.time,
+          tripData![i].Destination.time
+        );
+        const adjustedTime = weightedTime(tripTime, tripData![i].type);
+        console.log("times:", tripTime, adjustedTime);
+        travelTime = travelTime + adjustedTime;
+      }
+      const travelData = {
+        from: tripData![0].Destination.name,
+        to: tripData![tripData!.length - 1].Origin.name,
+        publicTransitTime: travelTime,
+        carTime: 10,
+      };
+      return travelData;
     },
   };
 }

@@ -1,11 +1,14 @@
 import { MapPin, Car, Bus } from "lucide-react";
-import { Trip } from "../types";
+import { PublicTransport, Walk } from "../types";
+import { adjustedTravelTime } from "../actions";
 
 type Props = {
-  trip: Trip;
+  tripData: PublicTransport[] | Walk[] | null;
 };
 
-export default function TravelCard({ trip }: Props) {
+export default async function TravelCard({ tripData }: Props) {
+  const trip = await adjustedTravelTime(tripData);
+  console.log("trip:", trip);
   function calculateTimeRatio(transit: number, car: number) {
     return Number((transit / car).toFixed(2));
   }
@@ -17,11 +20,11 @@ export default function TravelCard({ trip }: Props) {
   }
 
   return (
-    <div key={trip.id} className="p-4">
+    <div className="p-4">
       <div className="flex items-center space-x-2 mb-2">
         <MapPin className="text-blue-500" />
         <span className="font-medium">
-          {trip.from.name} → {trip.to.name}
+          {trip.from} → {trip.to}
         </span>
       </div>
 
@@ -50,7 +53,7 @@ export default function TravelCard({ trip }: Props) {
             {calculateTimeRatio(trip.publicTransitTime, trip.carTime)}
           </span>
           <span className="font-medium">
-            Public transpport Estimated market share:
+            Public transport Estimated market share:
           </span>
           <span>
             {publicTransportMarketShare(trip.publicTransitTime, trip.carTime)}%

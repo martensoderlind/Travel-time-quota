@@ -1,4 +1,3 @@
-"use client";
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -30,7 +29,6 @@ export default function TravelMap({ setForm, setTo, from }: Props) {
         } else {
           setTo(`${lat.toFixed(4).toString()} ${lng.toFixed(4).toString()}`);
         }
-        console.log(`Latitud: ${lati}, Longitud: ${long}`);
       },
     });
     //fungerar inte??

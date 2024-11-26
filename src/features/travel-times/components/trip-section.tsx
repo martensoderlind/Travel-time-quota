@@ -13,8 +13,7 @@ export default function TripSection({
   originStreet,
   destinationStreet,
 }: Props) {
-  const latLngRegex =
-    /^-?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*-?(1[0-7]\d(\.\d+)?|180(\.0+)?|([1-9]?\d(\.\d+)?))$/;
+  const latLngRegex = /\d+/;
   return (
     <>
       {sectionData.type === "WALK" ? (
@@ -63,9 +62,9 @@ export default function TripSection({
           >
             <div>
               <span className="text-sm text-start">
-                {latLngRegex.test(sectionData.Origin.name)
+                {latLngRegex.test(sectionData.Destination.name)
                   ? destinationStreet
-                  : sectionData.Origin.name
+                  : sectionData.Destination.name
                       .replace(/\s*\(Stockholm kn\)/g, "")
                       .trim()}
               </span>

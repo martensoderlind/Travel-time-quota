@@ -87,6 +87,8 @@ export function createTripService(db: Trip[]) {
         travelTime = travelTime + adjustedTime;
       }
       const travelData = {
+        originTime: tripData![0].Origin.time,
+        destTime: tripData![tripData!.length - 1].Destination.time,
         from: tripData![0].Destination.name,
         to: tripData![tripData!.length - 1].Origin.name,
         publicTransitTime: travelTime,

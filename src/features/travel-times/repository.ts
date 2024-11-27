@@ -1,4 +1,5 @@
 import { Db } from "./";
+import { carTable, publictransportTable } from "./db/schema";
 import { CarData, PublicTransport, Walk } from "./types";
 
 export function createRepository(db: Db) {
@@ -7,10 +8,21 @@ export function createRepository(db: Db) {
       return db;
     },
     async addCarData(carData: CarData) {
-      console.log(carData);
+      await db.insert(carTable).values({
+        timestamp: new Date(),
+        duration: parseInt((carData.routes[0].duration / 60).toFixed(0)),
+        from: carData.waypoints[0].name,
+        to: carData.waypoints[1].name,
+        geometry: carData.routes[0].geometry,
+      });
+      console.log("car object added to db");
     },
     async addPublicTransportData(tripData: PublicTransport[] | Walk[]) {
-      console.log(tripData);
+      await db.insert(publictransportTable).values({
+        timestamp: new Date(),
+        data: tripData,
+      });
+      console.log("public transport data added to db");
     },
   };
 }

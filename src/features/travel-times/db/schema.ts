@@ -6,7 +6,7 @@ import {
   integer,
   jsonb,
 } from "drizzle-orm/pg-core";
-export const messagesTable = pgTable("messages", {
+export const publictransportTable = pgTable("publictransportTable", {
   id: serial().primaryKey().notNull(),
   timestamp: timestamp().notNull(),
   data: jsonb().notNull(),

@@ -64,6 +64,7 @@ export function createTripService(db: Trip[]) {
       try {
         const response = await fetch(url);
         const data = await response.json();
+        console.log("kollektivtrafik:", data.Trip[0].LegList);
         return data.Trip[0].LegList.Leg;
       } catch (error: unknown) {
         if (error instanceof Error) {
@@ -83,7 +84,6 @@ export function createTripService(db: Trip[]) {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        console.log("car data: ", data);
         return data;
       } catch (error: unknown) {
         if (error instanceof Error) {
@@ -107,7 +107,6 @@ export function createTripService(db: Trip[]) {
             parseInt(
               tripData![i].minimumChangeDuration!.replaceAll(/[PTM]/g, "")
             ) / 2;
-          console.log("waitingtime", adjustedWaitTime);
           travelTime = travelTime + adjustedWaitTime * 2.5;
         }
         const adjustedTime = weightedTime(tripTime, tripData![i].type);

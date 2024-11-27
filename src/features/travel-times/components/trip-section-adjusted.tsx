@@ -8,14 +8,14 @@ type Props = {
   destinationStreet: string;
 };
 
-export default function TripSection({
+export default function TripSectionAdjusted({
   sectionData,
   originStreet,
   destinationStreet,
 }: Props) {
   const latLngRegex = /\d+/;
   return (
-    <>
+    <div className="border-l ml-4 pl-6">
       {sectionData.type === "WALK" ? (
         <>
           <div className="pl-2 mt-4 flex flex-row">
@@ -28,9 +28,11 @@ export default function TripSection({
       ) : (
         <>
           <div className="pl-2  flex flex-col">
-            <div className="flex flex-row">
-              <Clock />
-              <span>
+            <div className="flex flex-row mb-6 mt-4">
+              <div className="">
+                <Clock />
+              </div>
+              <span className="pl-4 font-semibold">
                 {(parseInt(
                   sectionData.minimumChangeDuration!.replace(/[PTM]/g, "")
                 ) *
@@ -88,6 +90,6 @@ export default function TripSection({
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }

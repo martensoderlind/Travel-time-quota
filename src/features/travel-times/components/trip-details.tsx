@@ -1,6 +1,7 @@
 import { MapPin } from "lucide-react";
 import { PublicTransport, Walk } from "../types";
 import TripSection from "./trip-section";
+import TripSectionAdjusted from "./trip-section-adjusted";
 
 type Props = {
   tripData: PublicTransport[] | Walk[] | null;
@@ -22,15 +23,31 @@ export default function TripDetails({
           {tripData![tripData!.length - 1].Destination.time}
         </span>
       </div>
-      <div>
-        {tripData?.map((trip, index) => (
-          <TripSection
-            key={index}
-            sectionData={trip}
-            originStreet={originStreet}
-            destinationStreet={destinationStreet}
-          />
-        ))}
+      <div className="flex flex-row">
+        <section className="flex flex-col mt-4">
+          <h3 className=" font-semibold text-lg">TravelTime </h3>
+          {tripData?.map((trip, index) => (
+            <TripSection
+              key={index}
+              sectionData={trip}
+              originStreet={originStreet}
+              destinationStreet={destinationStreet}
+            />
+          ))}
+        </section>
+        <section className="flex flex-col mt-4">
+          <h3 className="text-center font-semibold text-lg">
+            Adjusted TravelTime{" "}
+          </h3>
+          {tripData?.map((trip, index) => (
+            <TripSectionAdjusted
+              key={index}
+              sectionData={trip}
+              originStreet={originStreet}
+              destinationStreet={destinationStreet}
+            />
+          ))}
+        </section>
       </div>
     </div>
   );

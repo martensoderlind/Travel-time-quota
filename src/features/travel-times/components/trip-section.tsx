@@ -15,7 +15,7 @@ export default function TripSection({
 }: Props) {
   const latLngRegex = /\d+/;
   return (
-    <>
+    <div>
       {sectionData.type === "WALK" ? (
         <>
           <div className="pl-2 mt-4 flex flex-row">
@@ -75,6 +75,6 @@ export default function TripSection({
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }

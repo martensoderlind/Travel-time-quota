@@ -106,7 +106,7 @@ export default function TravelCard({
                 )}
               </span>
               <span className="font-medium">
-                Public transport Estimated market share:
+                Mode share of Public transport:
               </span>
               <span>
                 {publicTransportMarketShare(

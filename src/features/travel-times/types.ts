@@ -207,3 +207,10 @@ type Leg = {
   duration: number;
   distance: number;
 };
+interface OSRMRoute {
+  geometry: string;
+}
+
+export interface OSRMResponse {
+  routes: OSRMRoute[];
+}

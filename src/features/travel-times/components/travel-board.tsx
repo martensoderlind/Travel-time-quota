@@ -2,6 +2,7 @@ import React from "react";
 import TravelForm from "./travel-form";
 import TravelLayout from "./travel-layout";
 import { PublicTransport, Walk } from "../types";
+import { LatLngExpression } from "leaflet";
 
 type Props = {
   from: string;
@@ -12,6 +13,9 @@ type Props = {
   setTripData: React.Dispatch<
     React.SetStateAction<PublicTransport[] | Walk[] | null>
   >;
+  setRouteCoordinatesCar: React.Dispatch<
+    React.SetStateAction<LatLngExpression[] | null>
+  >;
 };
 
 export default function TravelBoard({
@@ -21,6 +25,7 @@ export default function TravelBoard({
   setFrom,
   setTo,
   setTripData,
+  setRouteCoordinatesCar,
 }: Props) {
   return (
     <>
@@ -31,7 +36,10 @@ export default function TravelBoard({
         setTo={setTo}
         setTripData={setTripData}
       />
-      <TravelLayout tripData={tripData} />
+      <TravelLayout
+        tripData={tripData}
+        setRouteCoordinatesCar={setRouteCoordinatesCar}
+      />
     </>
   );
 }

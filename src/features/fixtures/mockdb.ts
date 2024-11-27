@@ -140,3 +140,40 @@ export const tripdb = [
     dist: 420,
   },
 ];
+
+export const osrmResponse = {
+  code: "Ok",
+  routes: [
+    {
+      geometry:
+        "ijeiJgsdmBzH{HrDnU`X}VjBwGnA~FnQqRw@kFlRuPfB|CxBoArJiUrHyLz\\cPd@wAi@gAsDfAq@~j@v@lHD|Uf@v@xEJxGcDbDtg@oBtAfGcCm@G",
+      legs: [
+        {
+          steps: [],
+          summary: "",
+          weight: 664.6,
+          duration: 664.6,
+          distance: 4997.1,
+        },
+      ],
+      weight_name: "routability",
+      weight: 664.6,
+      duration: 664.6,
+      distance: 4997.1,
+    },
+  ],
+  waypoints: [
+    {
+      hint: "VKSNg____38HAAAALgAAABAAAAAQAAAAuk-bQIIkzUEkIitBCIgpQQcAAAAuAAAAEAAAABAAAACCDAEAp3ATARJ_iQOAcBMBCH-JAwEAnwmucYBv",
+      distance: 2.484167333,
+      name: "Norrtullsgatan",
+      location: [18.051239, 59.34261],
+    },
+    {
+      hint: "G0nxg____38YAAAATwAAAAwAAAAvAAAATrWDQT25D0Jy9ARBroGPQRgAAABPAAAADAAAAC8AAACCDAEAU28TAZcaiQO4bxMBpBqJAwEAnxWucYBv",
+      distance: 5.929772208,
+      name: "Ringvägen",
+      location: [18.050899, 59.316887],
+    },
+  ],
+};

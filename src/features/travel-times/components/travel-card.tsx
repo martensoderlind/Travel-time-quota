@@ -1,11 +1,15 @@
 import { MapPin, Car, Bus, ChevronDown, ChevronUp } from "lucide-react";
 import { CarData, PublicTransport, Walk } from "../types";
 import { useEffect, useState } from "react";
-import { adjustedTravelTime } from "../actions";
+import { adjustedTravelTime, polyLineRoute } from "../actions";
 import TripDetails from "./trip-details";
+import { LatLngExpression } from "leaflet";
 
 type Props = {
   tripData: PublicTransport[] | Walk[] | null;
+  setRouteCoordinatesCar: React.Dispatch<
+    React.SetStateAction<LatLngExpression[] | null>
+  >;
 };
 
 type Trip = {
@@ -17,7 +21,10 @@ type Trip = {
   carData: CarData;
 };
 
-export default function TravelCard({ tripData }: Props) {
+export default function TravelCard({
+  tripData,
+  setRouteCoordinatesCar,
+}: Props) {
   const [tripInformation, setProcessedTrip] = useState<Trip | null>(null);
   const [tripDetails, setTripDetails] = useState<boolean>(false);
 
@@ -31,6 +38,8 @@ export default function TravelCard({ tripData }: Props) {
         try {
           const trip = await adjustedTravelTime(tripData);
           setProcessedTrip(trip);
+          const carTravelRoute = await polyLineRoute(trip.carData);
+          setRouteCoordinatesCar(carTravelRoute);
         } catch (error) {
           console.error("Kunde inte bearbeta resedata:", error);
         }
@@ -38,7 +47,7 @@ export default function TravelCard({ tripData }: Props) {
     };
 
     processTrip();
-  }, [tripData]);
+  }, [tripData, setRouteCoordinatesCar]);
 
   function calculateTimeRatio(transit: number, car: number) {
     return Number((transit / car).toFixed(2));
@@ -53,7 +62,7 @@ export default function TravelCard({ tripData }: Props) {
   return (
     <div className="p-4">
       {tripInformation ? (
-        <>
+        <div>
           <div className="flex items-center space-x-2 mb-2">
             <MapPin className="text-blue-500" />
             <span className="font-medium">
@@ -138,7 +147,7 @@ export default function TravelCard({ tripData }: Props) {
               </>
             )}
           </div>
-        </>
+        </div>
       ) : (
         <>
           <div>

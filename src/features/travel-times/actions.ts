@@ -1,6 +1,7 @@
 "use server";
 import { createFeature } from "./instance";
-import { PublicTransport, Walk } from "./types";
+import { OSRMResponse, PublicTransport, Walk } from "./types";
+import polyline from "@mapbox/polyline";
 
 export async function trip(origin: string, destination: string) {
   const fromStation = await getStations(origin);
@@ -29,4 +30,26 @@ export async function adjustedTravelTime(
   tripData: PublicTransport[] | Walk[] | null
 ) {
   return await createFeature.calculateTravelTimeQuote(tripData);
+}
+
+export async function polyLineRoute(osrmResponse: OSRMResponse) {
+  console.log("route string", osrmResponse);
+  const decodePolyline = (encodedGeometry: string): [number, number][] => {
+    try {
+      return polyline.decode(encodedGeometry);
+    } catch (error) {
+      console.error("Fel vid avkodning av polyline:", error);
+      return [];
+    }
+  };
+
+  const routeCoordinates: [number, number][] =
+    osrmResponse.routes &&
+    osrmResponse.routes[0] &&
+    osrmResponse.routes[0].geometry
+      ? decodePolyline(osrmResponse.routes[0].geometry)
+      : [];
+
+  // console.log(routeCoordinates);
+  return routeCoordinates;
 }

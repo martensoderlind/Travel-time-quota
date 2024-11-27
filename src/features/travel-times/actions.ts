@@ -1,6 +1,6 @@
 "use server";
 import { createFeature } from "./instance";
-import { OSRMResponse, PublicTransport, Walk } from "./types";
+import { CarData, OSRMResponse, PublicTransport, Walk } from "./types";
 import polyline from "@mapbox/polyline";
 
 export async function trip(origin: string, destination: string) {
@@ -52,4 +52,10 @@ export async function polyLineRoute(osrmResponse: OSRMResponse) {
 
   // console.log(routeCoordinates);
   return routeCoordinates;
+}
+export async function saveTravelData(
+  tripData: PublicTransport[] | Walk[],
+  carData: CarData
+) {
+  await createFeature.saveTravelData(tripData!, carData);
 }

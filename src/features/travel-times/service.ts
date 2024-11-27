@@ -2,7 +2,7 @@ import { Db } from "./index";
 import { createFeature } from "./instance";
 import { calculateDeltaTime, CapitalFirstLetter, weightedTime } from "./logic";
 import { createRepository } from "./repository";
-import { Coordinates, PublicTransport, Walk } from "./types";
+import { CarData, Coordinates, PublicTransport, Walk } from "./types";
 
 export function createTripService(db: Db) {
   const repository = createRepository(db);
@@ -136,6 +136,13 @@ export function createTripService(db: Db) {
         carData: carData,
       };
       return travelData;
+    },
+    async saveTravelData(
+      tripData: PublicTransport[] | Walk[],
+      carData: CarData
+    ) {
+      await repository.addCarData(carData);
+      await repository.addPublicTransportData(tripData);
     },
   };
 }

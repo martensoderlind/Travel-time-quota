@@ -10,7 +10,7 @@ type Props = {
 export default function TravelCardOld({ publicTripData, carTripData }: Props) {
   return (
     <section className="collapse collapse-plus bg-white border-b shadow-md my-2">
-      <input type="radio" name="my-accordion-3" defaultChecked />
+      <input type="radio" name="my-accordion-3" />
       <div className="collapse-title text-xl font-medium flex flex-row items-baseline ">
         <div className="flex flex-row">
           <MapPin className="text-blue-500" />

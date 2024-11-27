@@ -1,7 +1,7 @@
 import { CarTripData, PublicTransport, Walk } from "../../types";
-import TripCarSection from "../trip-car-section";
 import TripSection from "../trip-section";
 import TripSectionAdjusted from "../trip-section-adjusted";
+import TripCarSectionOld from "./trip-car-section";
 
 type Props = {
   tripData: PublicTransport[] | Walk[] | null;
@@ -39,7 +39,7 @@ export default function TravelDataOld({ tripData, carData }: Props) {
           <h3 className="font-semibold text-lg text-center">
             Adjusted TravelTime Car{" "}
           </h3>
-          <TripCarSection carData={carData!} />
+          <TripCarSectionOld carData={carData!} />
         </section>
       </div>
     </div>

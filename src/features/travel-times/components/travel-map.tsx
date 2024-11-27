@@ -1,6 +1,7 @@
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { ClickableMarker } from "./clickable-marker";
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -42,6 +43,7 @@ export default function TravelMap({ setForm, setTo, from }: Props) {
       style={{ height: "500px", width: "100%" }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <ClickableMarker />
       <MapClickHandler />
     </MapContainer>
   );

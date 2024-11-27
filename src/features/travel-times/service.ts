@@ -83,7 +83,7 @@ export function createTripService(db: Trip[]) {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        console.log("car data: ", data);
+        console.log("car data: ", data.waypoint);
         return data;
       } catch (error: unknown) {
         if (error instanceof Error) {

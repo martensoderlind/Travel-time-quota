@@ -1,10 +1,4 @@
-import {
-  MapContainer,
-  Marker,
-  Polyline,
-  TileLayer,
-  useMapEvents,
-} from "react-leaflet";
+import { MapContainer, Polyline, TileLayer, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L, { LatLngExpression } from "leaflet";
 import { ClickableMarker } from "./clickable-marker";
@@ -41,6 +35,7 @@ export default function TravelMap({
         }
       },
     });
+    return <></>;
   }
 
   return (

@@ -18,38 +18,30 @@ L.Icon.Default.mergeOptions({
 });
 
 type Props = {
-  setForm: React.Dispatch<React.SetStateAction<string>>;
+  setFrom: React.Dispatch<React.SetStateAction<string>>;
   setTo: React.Dispatch<React.SetStateAction<string>>;
   from: string;
   routeCoordinatesCar: LatLngExpression[] | null;
 };
 
 export default function TravelMap({
-  setForm,
+  setFrom,
   setTo,
   from,
   routeCoordinatesCar,
 }: Props) {
   function MapClickHandler() {
-    let lati = 0;
-    let long = 0;
     useMapEvents({
       click: (e) => {
         const { lat, lng } = e.latlng;
-        lati = lat;
-        long = lng;
         if (from === "") {
-          setForm(`${lat.toFixed(4).toString()} ${lng.toFixed(4).toString()}`);
+          setFrom(`${lat.toFixed(4).toString()} ${lng.toFixed(4).toString()}`);
         } else {
           setTo(`${lat.toFixed(4).toString()} ${lng.toFixed(4).toString()}`);
         }
       },
     });
-    //fungerar inte??
-    return <Marker position={{ lat: lati, lng: long }} />;
   }
-
-  // const routeCoordinates = await polyLineRoute(osrmResponse);
 
   return (
     <MapContainer

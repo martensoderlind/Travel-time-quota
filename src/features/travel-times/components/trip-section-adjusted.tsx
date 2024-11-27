@@ -15,7 +15,7 @@ export default function TripSectionAdjusted({
 }: Props) {
   const latLngRegex = /\d+/;
   return (
-    <div className="border-l ml-4 pl-6">
+    <div className="">
       {sectionData.type === "WALK" ? (
         <>
           <div className="pl-2 mt-4 flex flex-row">

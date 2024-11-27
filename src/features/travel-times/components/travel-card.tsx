@@ -138,8 +138,9 @@ export default function TravelCard({
             {tripDetails ? (
               <TripDetails
                 tripData={tripData}
-                originStreet={tripInformation.carData.waypoints[0].name}
-                destinationStreet={tripInformation.carData.waypoints[1].name}
+                carData={tripInformation.carData}
+                // originStreet={tripInformation.carData.waypoints[0].name}
+                // destinationStreet={tripInformation.carData.waypoints[1].name}
               />
             ) : (
               <>

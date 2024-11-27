@@ -1,9 +1,9 @@
 import React from "react";
-import { CarData } from "../types";
+import { CarTripData } from "../types";
 import { Footprints, Car, CircleParking } from "lucide-react";
 
 type Props = {
-  carData: CarData;
+  carData: CarTripData;
 };
 
 export default function TripCarSection({ carData }: Props) {
@@ -15,23 +15,17 @@ export default function TripCarSection({ carData }: Props) {
       </div>
       <div className="pl-2 mt-4 flex flex-row">
         <Car />
-        <span className="pl-4 font-semibold">
-          {(carData.routes[0].duration / 60).toFixed(0)} min
-        </span>
+        <span className="pl-4 font-semibold">{carData.duration} min</span>
       </div>
       <ul className="steps steps-vertical">
         <li className="step step-neutral" data-content="●">
           <div className="pt-2">
-            <span className="text-sm text-start">
-              {carData.waypoints[0].name}
-            </span>
+            <span className="text-sm text-start">{carData.from}</span>
           </div>
         </li>
         <li className="step step-neutral" data-content="●">
           <div>
-            <span className="text-sm text-start">
-              {carData.waypoints[1].name}
-            </span>
+            <span className="text-sm text-start">{carData.to}</span>
           </div>
         </li>
       </ul>

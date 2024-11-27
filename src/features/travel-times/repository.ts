@@ -24,6 +24,12 @@ export function createRepository(db: Db) {
       });
       console.log("public transport data added to db");
     },
+    async getTripData() {
+      return await db.select().from(publictransportTable);
+    },
+    async getCarTripData() {
+      return await db.select().from(carTable);
+    },
   };
 }
 

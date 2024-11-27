@@ -144,5 +144,11 @@ export function createTripService(db: Db) {
       await repository.addCarData(carData);
       await repository.addPublicTransportData(tripData);
     },
+    async getTripData() {
+      return repository.getTripData();
+    },
+    async getCarTripData() {
+      return repository.getCarTripData();
+    },
   };
 }

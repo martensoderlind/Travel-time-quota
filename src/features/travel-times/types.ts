@@ -214,3 +214,16 @@ interface OSRMRoute {
 export interface OSRMResponse {
   routes: OSRMRoute[];
 }
+export type TripData = {
+  id: number;
+  timestamp: Date;
+  data: any;
+};
+export type CarTripData = {
+  id: number;
+  timestamp: Date;
+  duration: number;
+  from: string;
+  to: string;
+  geometry: string;
+};

@@ -59,3 +59,9 @@ export async function saveTravelData(
 ) {
   await createFeature.saveTravelData(tripData!, carData);
 }
+export async function getTripData() {
+  return await createFeature.getTripData();
+}
+export async function getCarTripData() {
+  return await createFeature.getCarTripData();
+}

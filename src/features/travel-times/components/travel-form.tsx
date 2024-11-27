@@ -36,12 +36,12 @@ export default function TravelForm({
     <form
       action={travelData}
       autoComplete="off"
-      className=" container mx-auto flex flex-col items-center m-4 p-4 bg-slate-100 rounded-md w-full md:w-8/12 shadow-lg"
+      className=" container mx-auto flex flex-col items-center m-4 p-4 bg-slate-100 rounded-md w-10/12 md:w-8/12 shadow-lg"
     >
       <h1 className=" text-3xl text-center text-gray-900">
         Selects two locations
       </h1>
-      <section className="flex md:flex-row">
+      <section className="flex flex-col md:flex-row">
         <div className="flex flex-col p-2">
           <label className="input input-bordered flex items-center gap-2 m-2">
             <svg
@@ -76,7 +76,7 @@ export default function TravelForm({
             </svg>
             <input
               type="text"
-              className="grow"
+              className="grow w-auto"
               id="to"
               name="to"
               placeholder="To"
@@ -88,7 +88,7 @@ export default function TravelForm({
         </div>
       </section>
 
-      <button className="btn my-2" type="submit">
+      <button className="btn my-2 w-6/12 md:w-4/12 btn-secondary" type="submit">
         Search
       </button>
     </form>

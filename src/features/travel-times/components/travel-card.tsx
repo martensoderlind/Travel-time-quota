@@ -60,7 +60,7 @@ export default function TravelCard({
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 w-10/12">
       {tripInformation ? (
         <div>
           <div className="flex items-center space-x-2 mb-2">
@@ -79,7 +79,7 @@ export default function TravelCard({
             <div className="flex items-center space-x-2">
               <Car className="text-gray-500" />
               <span>
-                {(tripInformation.carData.routes[0].duration / 60 + 10).toFixed(
+                {(tripInformation.carData.routes[0].duration / 60 + 12).toFixed(
                   0
                 )}{" "}
                 min
@@ -94,7 +94,7 @@ export default function TravelCard({
                 className={`text-lg ${
                   calculateTimeRatio(
                     tripInformation!.publicTransitTime,
-                    tripInformation.carData.routes[0].duration / 60 + 10
+                    tripInformation.carData.routes[0].duration / 60 + 12
                   ) > 1.5
                     ? "text-red-500"
                     : "text-green-500"
@@ -102,7 +102,7 @@ export default function TravelCard({
               >
                 {calculateTimeRatio(
                   tripInformation!.publicTransitTime,
-                  tripInformation.carData.routes[0].duration / 60 + 10
+                  tripInformation.carData.routes[0].duration / 60 + 12
                 )}
               </span>
               <span className="font-medium">
@@ -111,7 +111,7 @@ export default function TravelCard({
               <span>
                 {publicTransportMarketShare(
                   tripInformation!.publicTransitTime,
-                  tripInformation.carData.routes[0].duration / 60 + 10
+                  tripInformation.carData.routes[0].duration / 60 + 12
                 )}
                 %
               </span>
@@ -139,8 +139,6 @@ export default function TravelCard({
               <TripDetails
                 tripData={tripData}
                 carData={tripInformation.carData}
-                // originStreet={tripInformation.carData.waypoints[0].name}
-                // destinationStreet={tripInformation.carData.waypoints[1].name}
               />
             ) : (
               <>

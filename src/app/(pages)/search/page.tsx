@@ -1,5 +1,17 @@
 "use client";
-import TravelMap from "@/features/travel-times/components/travel-map";
+// import TravelMap from "@/features/travel-times/components/travel-map";
+import dynamic from "next/dynamic";
+const TravelMap = dynamic(
+  () => import("@/features/travel-times/components/travel-map"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[500px] w-full">
+        <p>Map is loading...</p>
+      </div>
+    ),
+  }
+);
 import { useState } from "react";
 import { PublicTransport, Walk } from "@/features/travel-times/types";
 import TravelBoard from "@/features/travel-times/components/travel-board";
@@ -14,6 +26,7 @@ export default function Page() {
   const [routeCoordinatesCar, setRouteCoordinatesCar] = useState<
     LatLngExpression[] | null
   >(null);
+
   return (
     <div className="container mx-auto">
       <div className="mx-auto mt-4 w-8/12 rounded-md">

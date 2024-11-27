@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import L, { LatLngExpression } from "leaflet";
 import { ClickableMarker } from "./clickable-marker";
 import { MapClickHandler } from "./map-click-handler";
+import { useEffect, useRef } from "react";
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -24,8 +25,18 @@ export default function TravelMap({
   from,
   routeCoordinatesCar,
 }: Props) {
+  const isInitialized = useRef(false);
+  useEffect(() => {
+    isInitialized.current = true;
+    return () => {
+      isInitialized.current = false;
+    };
+  }, []);
+  if (!isInitialized) return null;
+
   return (
     <MapContainer
+      id="map"
       center={{ lat: 59.3293, lng: 18.0686 }}
       zoom={13}
       style={{ height: "500px", width: "100%" }}

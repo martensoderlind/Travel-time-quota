@@ -22,14 +22,16 @@ export default function TripDetails({
           {tripData![tripData!.length - 1].Destination.time}
         </span>
       </div>
-      {tripData?.map((trip, index) => (
-        <TripSection
-          key={index}
-          sectionData={trip}
-          originStreet={originStreet}
-          destinationStreet={destinationStreet}
-        />
-      ))}
+      <div>
+        {tripData?.map((trip, index) => (
+          <TripSection
+            key={index}
+            sectionData={trip}
+            originStreet={originStreet}
+            destinationStreet={destinationStreet}
+          />
+        ))}
+      </div>
     </div>
   );
 }

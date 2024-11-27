@@ -1,9 +1,10 @@
+import { Db } from "./index";
 import { createFeature } from "./instance";
 import { calculateDeltaTime, CapitalFirstLetter, weightedTime } from "./logic";
 import { createRepository } from "./repository";
-import { Coordinates, PublicTransport, Trip, Walk } from "./types";
+import { Coordinates, PublicTransport, Walk } from "./types";
 
-export function createTripService(db: Trip[]) {
+export function createTripService(db: Db) {
   const repository = createRepository(db);
   const api_key = process.env.API_KEY;
   return {

@@ -1,6 +1,6 @@
-import { Trip } from "./types";
+import { Db } from "./";
 
-export function createRepository(db: Trip[]) {
+export function createRepository(db: Db) {
   return {
     async getAll() {
       return db;

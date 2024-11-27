@@ -1,4 +1,4 @@
-import { db } from "../fixtures/mockdb";
+import { db } from "./index";
 import { createTripService } from "./service";
 
 export const createFeature = createTripService(db);

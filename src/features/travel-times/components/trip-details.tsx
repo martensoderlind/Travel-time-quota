@@ -4,7 +4,6 @@ import TripSection from "./trip-section";
 import TripSectionAdjusted from "./trip-section-adjusted";
 import TripCarSection from "./trip-car-section";
 import { saveTravelData } from "../actions";
-import { useState } from "react";
 
 type Props = {
   tripData: PublicTransport[] | Walk[] | null;
@@ -12,10 +11,6 @@ type Props = {
 };
 
 export default function TripDetails({ tripData, carData }: Props) {
-  const [tripDetails, setTripDetails] = useState<boolean>(false);
-  const handleChange = () => {
-    setTripDetails((tripDetails) => !tripDetails);
-  };
   async function onClick() {
     await saveTravelData(tripData!, carData);
   }

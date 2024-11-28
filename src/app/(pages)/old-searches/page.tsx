@@ -1,10 +1,13 @@
 import OldSearches from "@/features/travel-times/components/old-searches/old-searches";
-import React from "react";
+import Loading from "./loading";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
     <div>
-      <OldSearches />
+      <Suspense fallback={<Loading />}>
+        <OldSearches />
+      </Suspense>
     </div>
   );
 }

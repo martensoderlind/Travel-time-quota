@@ -29,7 +29,7 @@ export default function TripDetails({ tripData, carData }: Props) {
         </span>
       </div>
       <div className="flex flex-col md:flex-row justify-around">
-        {/* <section className="flex flex-col mt-8 ml-8 md:ml-0">
+        <section className="sm:pt-4 w-64 opacity-60 hover:opacity-100">
           <h3 className=" font-semibold text-lg">TravelTime </h3>
           {tripData?.map((trip, index) => (
             <TripSection
@@ -39,58 +39,19 @@ export default function TripDetails({ tripData, carData }: Props) {
               destinationStreet={carData.waypoints[1].name}
             />
           ))}
-        </section> */}
-        {/* <section className="flex flex-col mt-4 sm:border-t md:border-t-0 sm:pt-4"> */}
-        {/* <h3 className="font-semibold text-lg">Adjusted TravelTime </h3> */}
-        <div>
-          {tripDetails ? (
-            <section className="sm:pt-4 w-64">
-              <h3 className=" font-semibold text-lg">TravelTime </h3>
-              <div className="form-control">
-                <label className="label cursor-pointer">
-                  <span className="label-text pr-2">Show adjusted trip</span>
-                  <input
-                    type="checkbox"
-                    className="toggle toggle-xs"
-                    onClick={handleChange}
-                  />
-                </label>
-              </div>
-              {tripData?.map((trip, index) => (
-                <TripSection
-                  key={index}
-                  sectionData={trip}
-                  originStreet={carData.waypoints[0].name}
-                  destinationStreet={carData.waypoints[1].name}
-                />
-              ))}
-            </section>
-          ) : (
-            <>
-              <section className="sm:pt-4 w-64">
-                <h3 className="font-semibold text-lg">Adjusted TravelTime </h3>
-                <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text pr-2">Show actual trip</span>
-                    <input
-                      type="checkbox"
-                      className="toggle toggle-xs"
-                      onClick={handleChange}
-                    />
-                  </label>
-                </div>
-                {tripData?.map((trip, index) => (
-                  <TripSectionAdjusted
-                    key={index}
-                    sectionData={trip}
-                    originStreet={carData.waypoints[0].name}
-                    destinationStreet={carData.waypoints[1].name}
-                  />
-                ))}
-              </section>
-            </>
-          )}
-        </div>
+        </section>
+        <section className="sm:pt-4 w-64">
+          <h3 className="font-semibold text-lg">Adjusted TravelTime </h3>
+
+          {tripData?.map((trip, index) => (
+            <TripSectionAdjusted
+              key={index}
+              sectionData={trip}
+              originStreet={carData.waypoints[0].name}
+              destinationStreet={carData.waypoints[1].name}
+            />
+          ))}
+        </section>
         <section className="flex flex-col mt-8 sm:border-t md:border-t-0 sm:pt-4">
           <h3 className="font-semibold text-lg">Adjusted TravelTime Car </h3>
           <TripCarSection carData={carData} />

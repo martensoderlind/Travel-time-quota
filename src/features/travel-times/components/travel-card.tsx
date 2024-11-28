@@ -88,33 +88,48 @@ export default function TravelCard({
           </div>
 
           <div className="mt-2 pt-2 border-t">
-            <div className="flex justify-between items-center">
-              <span className="font-medium">Travel Time Quota:</span>
-              <span
-                className={`text-lg ${
-                  calculateTimeRatio(
+            <div className="flex flex-col justify-between">
+              <span className="font-medium">Travel Time Quota</span>
+              <div>
+                <span
+                  className={`text-lg ${
+                    calculateTimeRatio(
+                      tripInformation!.publicTransitTime,
+                      tripInformation.carData.routes[0].duration / 60 + 12
+                    ) > 1.5
+                      ? "text-red-500"
+                      : "text-green-500"
+                  }`}
+                >
+                  {calculateTimeRatio(
                     tripInformation!.publicTransitTime,
                     tripInformation.carData.routes[0].duration / 60 + 12
-                  ) > 1.5
-                    ? "text-red-500"
-                    : "text-green-500"
-                }`}
-              >
-                {calculateTimeRatio(
-                  tripInformation!.publicTransitTime,
-                  tripInformation.carData.routes[0].duration / 60 + 12
-                )}
-              </span>
-              <span className="font-medium">
-                Mode share of Public transport:
-              </span>
-              <span>
-                {publicTransportMarketShare(
-                  tripInformation!.publicTransitTime,
-                  tripInformation.carData.routes[0].duration / 60 + 12
-                )}
-                %
-              </span>
+                  )}
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-medium">
+                  Mode share of Public transport
+                </span>
+                <span
+                  className={`text-lg ${
+                    parseInt(
+                      publicTransportMarketShare(
+                        tripInformation!.publicTransitTime,
+                        tripInformation.carData.routes[0].duration / 60 + 12
+                      )
+                    ) < 50
+                      ? "text-red-500"
+                      : "text-green-500"
+                  }`}
+                >
+                  {publicTransportMarketShare(
+                    tripInformation!.publicTransitTime,
+                    tripInformation.carData.routes[0].duration / 60 + 12
+                  )}
+                  %
+                </span>
+              </div>
             </div>
           </div>
           <div>

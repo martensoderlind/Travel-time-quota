@@ -28,23 +28,23 @@ export default function TripSectionAdjusted({
       ) : (
         <>
           <div className="pl-2  flex flex-col">
-            <div className="flex flex-row mb-6 mt-4">
-              <div className="">
+            <div className="flex flex-row">
+              <BusFront />
+              <span className="pl-4 font-semibold">
+                {sectionData.duration.replace(/[PTM]/g, "")} min
+              </span>
+              <span className="pl-4"> +</span>
+              <div className="ml-4">
                 <Clock />
               </div>
               <span className="pl-4 font-semibold">
+                {" "}
                 {(parseInt(
                   sectionData.minimumChangeDuration!.replace(/[PTM]/g, "")
                 ) *
                   2.5) /
                   2}{" "}
                 min
-              </span>
-            </div>
-            <div className="flex flex-row">
-              <BusFront />
-              <span className="pl-4 font-semibold">
-                {sectionData.duration.replace(/[PTM]/g, "")} min
               </span>
             </div>
           </div>

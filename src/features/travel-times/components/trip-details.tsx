@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { CarData, PublicTransport, Walk } from "../types";
 import TripSection from "./trip-section";
 import TripSectionAdjusted from "./trip-section-adjusted";
@@ -43,26 +43,19 @@ export default function TripDetails({ tripData, carData }: Props) {
         {/* <section className="flex flex-col mt-4 sm:border-t md:border-t-0 sm:pt-4"> */}
         {/* <h3 className="font-semibold text-lg">Adjusted TravelTime </h3> */}
         <div>
-          <button onClick={handleChange}>
-            {tripDetails ? (
-              <>
-                <div className="flex flex-row ml-1 mt-4">
-                  <p className="text-xs pr-4">Show adjusted trip</p>
-                  <ChevronUp size={16} />
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="flex flex-row ml-1 mt-4">
-                  <p className="text-xs pr-2">Show actual trip</p>
-                  <ChevronDown size={16} />
-                </div>
-              </>
-            )}
-          </button>
           {tripDetails ? (
-            <section className="sm:pt-4">
+            <section className="sm:pt-4 w-64">
               <h3 className=" font-semibold text-lg">TravelTime </h3>
+              <div className="form-control">
+                <label className="label cursor-pointer">
+                  <span className="label-text pr-2">Show adjusted trip</span>
+                  <input
+                    type="checkbox"
+                    className="toggle toggle-xs"
+                    onClick={handleChange}
+                  />
+                </label>
+              </div>
               {tripData?.map((trip, index) => (
                 <TripSection
                   key={index}
@@ -74,8 +67,18 @@ export default function TripDetails({ tripData, carData }: Props) {
             </section>
           ) : (
             <>
-              <section className="sm:pt-4">
+              <section className="sm:pt-4 w-64">
                 <h3 className="font-semibold text-lg">Adjusted TravelTime </h3>
+                <div className="form-control">
+                  <label className="label cursor-pointer">
+                    <span className="label-text pr-2">Show actual trip</span>
+                    <input
+                      type="checkbox"
+                      className="toggle toggle-xs"
+                      onClick={handleChange}
+                    />
+                  </label>
+                </div>
                 {tripData?.map((trip, index) => (
                   <TripSectionAdjusted
                     key={index}
@@ -88,7 +91,6 @@ export default function TripDetails({ tripData, carData }: Props) {
             </>
           )}
         </div>
-        {/* </section> */}
         <section className="flex flex-col mt-8 sm:border-t md:border-t-0 sm:pt-4">
           <h3 className="font-semibold text-lg">Adjusted TravelTime Car </h3>
           <TripCarSection carData={carData} />

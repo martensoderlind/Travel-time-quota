@@ -1,3 +1,6 @@
+import polyline from "@mapbox/polyline";
+import { OSRMResponse } from "./types";
+
 export function CapitalFirstLetter(name: string) {
   return name
     .trim()
@@ -26,4 +29,24 @@ export function weightedTime(tripTime: number, type: string) {
     return (tripTime * 2) / 60;
   }
   return tripTime / 60;
+}
+
+export function polyLineRoute(osrmResponse: OSRMResponse) {
+  const decodePolyline = (encodedGeometry: string): [number, number][] => {
+    try {
+      return polyline.decode(encodedGeometry);
+    } catch (error) {
+      console.error("Problem while decoding polyline:", error);
+      return [];
+    }
+  };
+
+  const routeCoordinates: [number, number][] =
+    osrmResponse.routes &&
+    osrmResponse.routes[0] &&
+    osrmResponse.routes[0].geometry
+      ? decodePolyline(osrmResponse.routes[0].geometry)
+      : [];
+
+  return routeCoordinates;
 }

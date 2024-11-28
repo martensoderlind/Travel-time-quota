@@ -1,8 +1,19 @@
 import { Db } from "./db/";
 import { createFeature } from "./instance";
-import { calculateDeltaTime, CapitalFirstLetter, weightedTime } from "./logic";
+import {
+  calculateDeltaTime,
+  CapitalFirstLetter,
+  polyLineRoute,
+  weightedTime,
+} from "./logic";
 import { createRepository } from "./repository";
-import { CarData, Coordinates, PublicTransport, Walk } from "./types";
+import {
+  CarData,
+  Coordinates,
+  OSRMResponse,
+  PublicTransport,
+  Walk,
+} from "./types";
 
 export function createTripService(db: Db) {
   const repository = createRepository(db);
@@ -149,6 +160,9 @@ export function createTripService(db: Db) {
     },
     async getCarTripData() {
       return repository.getCarTripData();
+    },
+    getPolyLineRoute(osrmResponse: OSRMResponse) {
+      return polyLineRoute(osrmResponse);
     },
   };
 }

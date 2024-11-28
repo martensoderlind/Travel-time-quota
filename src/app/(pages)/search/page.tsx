@@ -13,7 +13,7 @@ const TravelMap = dynamic(
 );
 import { useState } from "react";
 import { PublicTransport, Walk } from "@/features";
-import { TravelBoard } from "@/features";
+import TravelBoard from "@/features/travel-times/components/travel-board";
 import { LatLngExpression } from "leaflet";
 
 export default function Page() {

@@ -18,7 +18,7 @@ type Props = {
   >;
 };
 
-export function TravelBoard({
+export default function TravelBoard({
   from,
   to,
   tripData,

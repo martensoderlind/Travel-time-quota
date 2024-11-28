@@ -1,7 +1,7 @@
 import { CarTripData, PublicTransport, Walk } from "../../types";
 import TripSection from "../trip-section";
 import TripSectionAdjusted from "../trip-section-adjusted";
-import TripCarSectionOld from "./trip-car-section";
+import TripCarSectionOld from "./trip-car-section-old";
 
 type Props = {
   tripData: PublicTransport[] | Walk[] | null;

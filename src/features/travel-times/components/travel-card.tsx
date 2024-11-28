@@ -60,7 +60,7 @@ export default function TravelCard({
   }
 
   return (
-    <div className="p-4 w-10/12">
+    <div className="p-4">
       {tripInformation ? (
         <div>
           <div className="flex items-center space-x-2 mb-2">
@@ -123,14 +123,14 @@ export default function TravelCard({
                 <>
                   <div className="flex flex-row ml-1 mt-4">
                     <p className="text-xs pr-4">Hide details</p>
-                    <ChevronDown size={16} />
+                    <ChevronUp size={16} />
                   </div>
                 </>
               ) : (
                 <>
                   <div className="flex flex-row ml-1 mt-4">
                     <p className="text-xs pr-2">Show details</p>
-                    <ChevronUp size={16} />
+                    <ChevronDown size={16} />
                   </div>
                 </>
               )}

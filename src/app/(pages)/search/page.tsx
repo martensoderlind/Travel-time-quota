@@ -28,7 +28,7 @@ export default function Page() {
   >(null);
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto w-8/12">
       <div className="mx-auto mt-4 w-8/12 rounded-md">
         <TravelMap
           setFrom={setFrom}

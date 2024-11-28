@@ -45,8 +45,23 @@ export function polyLineRoute(osrmResponse: OSRMResponse) {
     osrmResponse.routes &&
     osrmResponse.routes[0] &&
     osrmResponse.routes[0].geometry
-      ? decodePolyline(osrmResponse.routes[0].geometry)
+      ? decodePolyline(osrmResponse.routes![0].geometry)
       : [];
+
+  return routeCoordinates;
+}
+export function polyLineRoutePublic(osrmResponse: string) {
+  const decodePolyline = (encodedGeometry: string): [number, number][] => {
+    try {
+      return polyline.decode(encodedGeometry);
+    } catch (error) {
+      console.error("Problem while decoding polyline:", error);
+      return [];
+    }
+  };
+
+  const routeCoordinates: [number, number][] =
+    osrmResponse !== null ? decodePolyline(osrmResponse) : [];
 
   return routeCoordinates;
 }

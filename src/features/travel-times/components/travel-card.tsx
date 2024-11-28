@@ -70,7 +70,7 @@ export default function TravelCard({
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-5 gap-4">
             <div className="flex items-center space-x-2">
               <Bus className="text-green-500" />
               <span>{tripInformation!.publicTransitTime} min</span>
@@ -89,8 +89,8 @@ export default function TravelCard({
 
           <div className="mt-2 pt-2 border-t">
             <div className="flex flex-col justify-between">
-              <span className="font-medium">Travel Time Quota</span>
-              <div>
+              <div className="flex my-4">
+                <span className="font-medium">Travel Time Quota</span>
                 <span
                   className={`text-lg ${
                     calculateTimeRatio(
@@ -99,7 +99,7 @@ export default function TravelCard({
                     ) > 1.5
                       ? "text-red-500"
                       : "text-green-500"
-                  }`}
+                  } ml-28`}
                 >
                   {calculateTimeRatio(
                     tripInformation!.publicTransitTime,
@@ -107,12 +107,12 @@ export default function TravelCard({
                   )}
                 </span>
               </div>
-              <div className="flex flex-col">
-                <span className="font-medium">
+              <div className="flex">
+                <span className="font-medium mb-2">
                   Mode share of Public transport
                 </span>
                 <span
-                  className={`text-lg ${
+                  className={`text-lg ml-4 ${
                     parseInt(
                       publicTransportMarketShare(
                         tripInformation!.publicTransitTime,

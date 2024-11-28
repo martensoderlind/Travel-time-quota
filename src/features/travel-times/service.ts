@@ -47,6 +47,7 @@ export function createTripService(db: Db) {
         throw new Error("An unknown error occurred");
       }
     },
+
     async traveltimeCar(fromStation: Coordinates, toStation: Coordinates) {
       const originLat = fromStation.lat;
       const originLng = fromStation.lng;
@@ -66,10 +67,10 @@ export function createTripService(db: Db) {
         throw new Error("An unknown error occurred");
       }
     },
-    async calculateTravelTimeQuote(
-      tripData: PublicTransport[] | Walk[] | null
-    ) {
+
+    publicTransportTravelTime(tripData: PublicTransport[] | Walk[] | null) {
       let travelTime = 0;
+
       for (let i = 0; i < tripData!.length; i++) {
         const tripTime = calculateDeltaTime(
           tripData![i].Origin.time,
@@ -85,6 +86,12 @@ export function createTripService(db: Db) {
         const adjustedTime = weightedTime(tripTime, tripData![i].type);
         travelTime = travelTime + adjustedTime;
       }
+      return travelTime;
+    },
+
+    async calculateTravelTimeQuote(
+      tripData: PublicTransport[] | Walk[] | null
+    ) {
       const origincoord = {
         lat: tripData![0].Origin.lat.toString(),
         lng: tripData![0].Origin.lon.toString(),
@@ -94,7 +101,9 @@ export function createTripService(db: Db) {
         lng: tripData![tripData!.length - 1].Destination.lon.toString(),
       };
 
+      const travelTime = createFeature.publicTransportTravelTime(tripData);
       const carData = await createFeature.traveltimeCar(origincoord, destcoord);
+
       const travelData = {
         originTime: tripData![0].Origin.time,
         destTime: tripData![tripData!.length - 1].Destination.time,
@@ -107,6 +116,7 @@ export function createTripService(db: Db) {
         publicTransitTime: travelTime,
         carData: carData,
       };
+
       return travelData;
     },
     async saveTravelData(

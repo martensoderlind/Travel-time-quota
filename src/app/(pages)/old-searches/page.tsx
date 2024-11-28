@@ -1,4 +1,4 @@
-import OldSearches from "@/features/travel-times/components/old-searches/old-searches";
+import { OldSearches } from "@/features";
 import React from "react";
 
 export default function Page() {

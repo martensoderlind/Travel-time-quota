@@ -1,5 +1,4 @@
 "use client";
-// import TravelMap from "@/features/travel-times/components/travel-map";
 import dynamic from "next/dynamic";
 const TravelMap = dynamic(
   () => import("@/features/travel-times/components/travel-map"),
@@ -13,8 +12,8 @@ const TravelMap = dynamic(
   }
 );
 import { useState } from "react";
-import { PublicTransport, Walk } from "@/features/travel-times/types";
-import TravelBoard from "@/features/travel-times/components/travel-board";
+import { PublicTransport, Walk } from "@/features";
+import { TravelBoard } from "@/features";
 import { LatLngExpression } from "leaflet";
 
 export default function Page() {

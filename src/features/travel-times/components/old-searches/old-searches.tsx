@@ -4,7 +4,7 @@ import { CarTripData, TripData } from "../../types";
 import TravelCardOld from "./travel-card-old";
 import { getCarTripData, getTripData } from "../../actions";
 
-export default function OldSearches() {
+export function OldSearches() {
   const [publicTripData, setPublicTripData] = useState<TripData[] | null>(null);
   const [carTripData, setCarTripData] = useState<CarTripData[] | null>(null);
 

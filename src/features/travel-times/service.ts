@@ -1,4 +1,4 @@
-import { Db } from "./index";
+import { Db } from "./db/";
 import { createFeature } from "./instance";
 import { calculateDeltaTime, CapitalFirstLetter, weightedTime } from "./logic";
 import { createRepository } from "./repository";

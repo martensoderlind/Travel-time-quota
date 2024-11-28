@@ -1,5 +1,5 @@
-import { Db } from "./";
-import { carTable, publictransportTable } from "./db/schema";
+import { Db } from "./db";
+import { carTable, publictransportTable } from "./db";
 import { CarData, PublicTransport, Walk } from "./types";
 
 export function createRepository(db: Db) {

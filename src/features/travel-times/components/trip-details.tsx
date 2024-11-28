@@ -21,7 +21,7 @@ export default function TripDetails({ tripData, carData }: Props) {
   }
   return (
     <div className="flex flex-col space-x-2 mb-2 pt-2 mt-4 border-t w-full">
-      <div className="flex flex-row pl-4">
+      <div className="flex flex-row pl-2">
         <MapPin className="text-blue-500" />
         <span className="font-semibold pl-4">
           {tripData![0].Origin.time} →{" "}

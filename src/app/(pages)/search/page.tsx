@@ -29,7 +29,7 @@ export default function Page() {
 
   return (
     <div className="container mx-auto w-8/12">
-      <div className="mx-auto mt-4 w-8/12 rounded-md">
+      <div className="mx-auto mt-4 rounded-md">
         <TravelMap
           setFrom={setFrom}
           setTo={setTo}

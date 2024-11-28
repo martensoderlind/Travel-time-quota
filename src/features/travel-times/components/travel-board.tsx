@@ -28,7 +28,7 @@ export default function TravelBoard({
   setRouteCoordinatesCar,
 }: Props) {
   return (
-    <>
+    <main>
       <TravelForm
         from={from}
         to={to}
@@ -40,6 +40,6 @@ export default function TravelBoard({
         tripData={tripData}
         setRouteCoordinatesCar={setRouteCoordinatesCar}
       />
-    </>
+    </main>
   );
 }

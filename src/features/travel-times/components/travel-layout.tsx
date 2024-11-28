@@ -14,7 +14,7 @@ export default function TravelLayout({
   setRouteCoordinatesCar,
 }: Props) {
   return (
-    <div className="container mx-auto rounded-md space-y-4 mb-4 shadow-md bg-white w-8/12">
+    <div className="container mx-auto rounded-md space-y-4 mb-4 shadow-md bg-white">
       {tripData !== null ? (
         <TravelCard
           tripData={tripData}

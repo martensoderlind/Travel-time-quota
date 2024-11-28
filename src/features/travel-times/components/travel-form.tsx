@@ -36,7 +36,7 @@ export default function TravelForm({
     <form
       action={travelData}
       autoComplete="off"
-      className=" container mx-auto flex flex-col items-center m-4 p-4 bg-slate-100 rounded-md w-10/12 md:w-8/12 shadow-lg"
+      className=" container mx-auto flex flex-col items-center m-4 p-4 bg-slate-100 rounded-md shadow-lg"
     >
       <h1 className=" text-3xl text-center text-gray-900">
         Selects two locations

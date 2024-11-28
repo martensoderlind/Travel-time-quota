@@ -39,7 +39,7 @@ export default function TravelMap({
       id="map"
       center={{ lat: 59.3293, lng: 18.0686 }}
       zoom={13}
-      style={{ height: "500px", width: "100%" }}
+      style={{ height: "600px", width: "100%" }}
     >
       {routeCoordinatesCar !== null && (
         <Polyline

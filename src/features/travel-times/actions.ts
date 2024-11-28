@@ -12,7 +12,7 @@ export async function tripByCoordinates(formData: FormData) {
 export async function adjustedTravelTime(
   tripData: PublicTransport[] | Walk[] | null
 ) {
-  return await createFeature.calculateTravelTimeQuote(tripData);
+  return await createFeature.calculateTravelTime(tripData);
 }
 
 export async function polyLineRoute(osrmResponse: OSRMResponse) {

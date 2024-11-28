@@ -89,9 +89,7 @@ export function createTripService(db: Db) {
       return travelTime;
     },
 
-    async calculateTravelTimeQuote(
-      tripData: PublicTransport[] | Walk[] | null
-    ) {
+    async calculateTravelTime(tripData: PublicTransport[] | Walk[] | null) {
       const origincoord = {
         lat: tripData![0].Origin.lat.toString(),
         lng: tripData![0].Origin.lon.toString(),

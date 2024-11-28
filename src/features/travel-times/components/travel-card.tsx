@@ -70,13 +70,13 @@ export default function TravelCard({
             </span>
           </div>
 
-          <div className="grid grid-cols-5 gap-4">
+          <div className="flex">
             <div className="flex items-center space-x-2">
               <Bus className="text-green-500" />
               <span>{tripInformation!.publicTransitTime} min</span>
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 ml-36">
               <Car className="text-gray-500" />
               <span>
                 {(tripInformation.carData.routes[0].duration / 60 + 12).toFixed(

@@ -35,9 +35,8 @@ export default function TripDetails({ tripData, carData }: Props) {
             />
           ))}
         </section>
-        <section className="sm:pt-4 w-64">
+        <section className="sm:pt-4 w-64 sm:border-t md:border-t-0">
           <h3 className="font-semibold text-lg">Adjusted TravelTime </h3>
-
           {tripData?.map((trip, index) => (
             <TripSectionAdjusted
               key={index}
@@ -47,7 +46,7 @@ export default function TripDetails({ tripData, carData }: Props) {
             />
           ))}
         </section>
-        <section className="flex flex-col mt-8 sm:border-t md:border-t-0 sm:pt-4">
+        <section className="flex flex-col sm:border-t md:border-t-0 sm:pt-4">
           <h3 className="font-semibold text-lg">Adjusted TravelTime Car </h3>
           <TripCarSection carData={carData} />
         </section>

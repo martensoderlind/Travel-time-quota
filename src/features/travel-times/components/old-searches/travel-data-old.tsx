@@ -11,7 +11,7 @@ export default function TravelDataOld({ tripData, carData }: Props) {
   return (
     <div className="space-x-2 mb-2 pt-2 mt-4 border-t ">
       <div className="flex flex-col md:flex-row justify-around">
-        <section className="flex flex-col mt-8 md:ml-0 w-1/3">
+        <section className="flex flex-col mt-8 md:ml-0 w-1/3 opacity-60 hover:opacity-100">
           <h3 className="font-semibold text-lg text-center">TravelTime </h3>
           {tripData?.map((trip, index) => (
             <TripSection

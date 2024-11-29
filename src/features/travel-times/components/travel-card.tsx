@@ -90,7 +90,7 @@ export default function TravelCard({
           <div className="mt-2 pt-2 border-t">
             <div className="flex flex-col justify-between">
               <div className="flex my-4">
-                <span className="font-medium">Travel Time Quota</span>
+                <span className="font-medium">Travel Time Ratio</span>
                 <span
                   className={`text-lg ${
                     calculateTimeRatio(

@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Travel time quota",
+  title: "Travel time ratio",
   description: "calculate traveltime quote",
 };
 

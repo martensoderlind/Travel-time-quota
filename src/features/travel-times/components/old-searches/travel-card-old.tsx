@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default function TravelCardOld({ publicTripData, carTripData }: Props) {
-  console.log("public trip data:", publicTripData);
   function calculateTravelTime(originTime: string, destinationTime: string) {
     const [hours1, minutes1, seconds1] = originTime.split(":").map(Number);
     const [hours2, minutes2, seconds2] = destinationTime.split(":").map(Number);
@@ -20,7 +19,6 @@ export default function TravelCardOld({ publicTripData, carTripData }: Props) {
 
     // Konvertera till sekunder om så önskas
     return diffInMilliseconds / (1000 * 60);
-    return "1";
   }
   return (
     <section className="collapse collapse-plus bg-white border-b shadow-md my-2">
@@ -48,6 +46,7 @@ export default function TravelCardOld({ publicTripData, carTripData }: Props) {
           <span className="text-sm">{carTripData?.duration} min</span>
         </div>
       </div>
+
       <article className="collapse-content">
         <TravelDataOld tripData={publicTripData!.data} carData={carTripData} />
       </article>

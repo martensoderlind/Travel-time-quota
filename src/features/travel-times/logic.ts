@@ -20,7 +20,6 @@ export function calculateDeltaTime(
 
   const diffInMilliseconds = Math.abs(date2.getTime() - date1.getTime());
 
-  // Konvertera till sekunder om så önskas
   return diffInMilliseconds / 1000;
 }
 
